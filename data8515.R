@@ -60,7 +60,11 @@ for(i in 1:length(files)){
   } 
   colnames(dt) <- new.vector
   assign(x=str_c("data",i+1985),dt)
+  if (file.exists(paste0(1985+i,"data",".csv"))){
+    warning(paste0(1985+i,"data already exists, not rewriting\n"))
+  } else {
   write.csv(dt,file = paste0(1985+i,"data",".csv"))
+  }
 }
 ##For year 1999-2015
 files2 <- list(data.1999,data.2001,data.2003,data.2005, data.2007, data.2009, data.2011, data.2013, data.2015)
@@ -75,6 +79,11 @@ for(i in 1:length(files2)){
   } 
   colnames(dt) <- new.vector
   assign(x=str_c("data",2*i+1997),dt)
-  write.csv(dt,file = paste0(1997+2*i,"data",".csv"))
+  if (file.exists(paste0(1997+2*i,"data",".csv"))){
+    warning(paste0(1997+2*i,"data already exists, not rewriting\n"))
+  } else {
+    write.csv(dt,file = paste0(1997+2*i,"data",".csv"))
+  }
 }
+
 
