@@ -14,54 +14,21 @@ for(i in Xseq_yr){
    df = var_name_list[[i]]
    assign(paste(i),df)
  }
- ##extract the data according to the variable lists
-# data.1986test <- subset(data,select=c(ID,V12501,V12502,V12503,V12510,V13011,V13012,V13013,V13014,V13015,V12988,V13017,V13394,V13393,V12796,V12803,V13417
-#                                       ,V13438,V13473,V13500,V13503,V13510,V13512,V13530,V13565,V13568,V13579,V13582,V13604,V13666,V13640,V13641
-#                                       ,V13054,V13055 ,V13233 ,V13234,V13046,V13452,V13106,V13224,V13101,V13278))
-data.1986 <- subset(data,select = which(colnames(data) %in% X1986))
-data.1987 <- subset(data,select = which(colnames(data) %in% X1987))
-data.1988 <- subset(data,select = which(colnames(data) %in% X1988))
-data.1989 <- subset(data,select = which(colnames(data) %in% X1989))
-data.1990 <- subset(data,select = which(colnames(data) %in% X1990))
-data.1991 <- subset(data,select = which(colnames(data) %in% X1991))
-data.1992 <- subset(data,select = which(colnames(data) %in% X1992))
-data.1993 <- subset(data,select = which(colnames(data) %in% X1993))
-data.1994 <- subset(data,select = which(colnames(data) %in% X1994))
-data.1995 <- subset(data,select = which(colnames(data) %in% X1995))
-data.1996 <- subset(data,select = which(colnames(data) %in% X1996))
-data.1997 <- subset(data,select = which(colnames(data) %in% X1997))
-data.1999 <- subset(data,select = which(colnames(data) %in% X1999))
-data.2001 <- subset(data,select = which(colnames(data) %in% X2001))
-data.2003 <- subset(data,select = which(colnames(data) %in% X2003))
-data.2005 <- subset(data,select = which(colnames(data) %in% X2005))
-data.2007 <- subset(data,select = which(colnames(data) %in% X2007))
-data.2009 <- subset(data,select = which(colnames(data) %in% X2009))
-data.2011 <- subset(data,select = which(colnames(data) %in% X2011))
-data.2013 <- subset(data,select = which(colnames(data) %in% X2013))
-data.2015 <- subset(data,select = which(colnames(data) %in% X2015))
+##Now we would like to extract the data according to the variable lists
+##We need a list of variables for each year
+
+name.list <- list(X1986,X1987,X1988,X1989,X1990,X1991,X1992, X1993, X1994, X1995, X1996, X1997)
+for(i in 1:length(name.list)){
+  data.year <- subset(data,select = which(colnames(data) %in% name.list[[i]]))
+  assign(paste0("data.",1985+i), data.year)
+}
 
 
-
-
- 
-# seq_yr = c(seq(1986,1996),seq(1997,2015,by=2))
-#for (Number in seq_yr){
-#  dataname <- paste0("name",Number)
-#   file<- subset(data,select = c(ID,which(colnames(data) %in% dataname)))
-#   assign(x=str_c("data.",Number),value=file,envir=.GlobalEnv)  
-#}
- 
-
-##extract the data according to the variable lists
-##data86 <- subset(data,select = c(ID, which(colnames(data) %in% name86)))
-
-#for (i in seq_yr){
-#  df = var_name_list[[i]]
-#  assign(paste(i),df)
-#  file<- subset(data,select = c(ID,which(colnames(data) %in% dataname)))
-  # assign value to the variable name x 
-#  assign(x=str_c("data.",i),value=file,envir=.GlobalEnv)  
-#}
+name.list2 <- list(X1999,X2001,X2003,X2005, X2007, X2009, X2011, X2013, X2015)
+for(i in 1:length(name.list2)){
+  data.year <- subset(data,select = which(colnames(data) %in% name.list2[[i]]))
+  assign(paste0("data.",1997+2*i), data.year)
+}
 
 ##Using Hashmap to change colnames
 a <- var_name_list
@@ -73,29 +40,43 @@ for(i in 2:22){
 }
 
 ##set up the hashmap between Variable number and its name
-H1986 <- hashmap(name2[,2],name2[,1])
-H1987 <- hashmap(name3[,2],name2[,1])
-H1988 <- hashmap(name4[,2],name2[,1])
-H1989 <- hashmap(name5[,2],name2[,1])
-H1990 <- hashmap(name6[,2],name2[,1])
-H1991 <- hashmap(name7[,2],name2[,1])
-H1992 <- hashmap(name8[,2],name2[,1])
-H1993 <- hashmap(name9[,2],name2[,1])
-H1994 <- hashmap(name10[,2],name2[,1])
-H1995 <- hashmap(name11[,2],name2[,1])
-H1996 <- hashmap(name12[,2],name2[,1])
-H1997 <- hashmap(name13[,2],name2[,1])
-H1999 <- hashmap(name14[,2],name2[,1])
-H2001 <- hashmap(name15[,2],name3[,1])
-H2003 <- hashmap(name16[,2],name4[,1])
-H2005 <- hashmap(name17[,2],name5[,1])
-H2007 <- hashmap(name18[,2],name6[,1])
-H2009 <- hashmap(name19[,2],name7[,1])
-H2011 <- hashmap(name20[,2],name8[,1])
-H2013 <- hashmap(name21[,2],name9[,1])
-H2015 <- hashmap(name22[,2],name10[,1])
+#H1986 <- hashmap(name2[,2],name2[,1])
+#H1987 <- hashmap(name3[,2],name3[,1])
+#H1988 <- hashmap(name4[,2],name4[,1])
+#H1989 <- hashmap(name5[,2],name5[,1])
+#H1990 <- hashmap(name6[,2],name6[,1])
+#H1991 <- hashmap(name7[,2],name7[,1])
+#H1992 <- hashmap(name8[,2],name8[,1])
+#H1993 <- hashmap(name9[,2],name9[,1])
+#H1994 <- hashmap(name10[,2],name10[,1])
+#H1995 <- hashmap(name11[,2],name11[,1])
+#H1996 <- hashmap(name12[,2],name12[,1])
+#H1997 <- hashmap(name13[,2],name13[,1])
+#H1999 <- hashmap(name14[,2],name14[,1])
+#H2001 <- hashmap(name15[,2],name15[,1])
+#H2003 <- hashmap(name16[,2],name16[,1])
+#H2005 <- hashmap(name17[,2],name17[,1])
+#H2007 <- hashmap(name18[,2],name18[,1])
+#H2009 <- hashmap(name19[,2],name19[,1])
+#H2011 <- hashmap(name20[,2],name20[,1])
+#H2013 <- hashmap(name21[,2],name21[,1])
+#H2015 <- hashmap(name22[,2],name22[,1])
 
+##Construct hashmaps linking variable name and variable for each year
+annual.name.list <- list(name2,name3,name4,name5,name6,name7,name8,name9,name10,name11,name12,name13)
+                         
+for(i in 1:length(annual.name.list)){
+  file <-annual.name.list[[i]]
+  hp <- hashmap(file[,2],file[,1])
+  assign(x=str_c("H","test",i+1985),value=hp)
+}
 
+annual.name.list2 <- list(name14, name15,name16,name17,name18,name19,name20,name21,name22)
+for(i in 1:length(annual.name.list2)){
+  file <-annual.name.list2[[i]]
+  hp <- hashmap(file[,2],file[,1])
+  assign(x=str_c("H","test",2*i+1997),value=hp)
+}
 
 ##Using hashmap to replace the column names for each dataset
 colnames <- colnames(data.1986)
