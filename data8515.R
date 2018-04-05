@@ -49,6 +49,9 @@ annual.name.list2 <- list(name14, name15,name16,name17,name18,name19,name20,name
 ##For year 1986-1997
 files <- list(data.1986,data.1987,data.1988,data.1989,data.1990,data.1991,data.1992,data.1993
               ,data.1994,data.1995,data.1996,data.1997)
+
+
+
 for(i in 1:length(files)){
   dt <- files[[i]]
   colnames <- colnames(dt)
@@ -60,6 +63,9 @@ for(i in 1:length(files)){
   } 
   colnames(dt) <- new.vector
   assign(x=str_c("data.",i+1985),dt)
+  Year <- rep(i+1985,length = nrow(data.1986))
+  a <- cbind(dt, Year)
+  assign(paste0("data.",1985+i),a)
   if (file.exists(paste0(1985+i,"data",".csv"))){
     warning(paste0(1985+i,"data already exists, not rewriting\n"))
   } else {
