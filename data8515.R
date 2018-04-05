@@ -59,7 +59,7 @@ for(i in 1:length(files)){
     new.vector[N] <- hp[[colnames[N]]]
   } 
   colnames(dt) <- new.vector
-  assign(x=str_c("data",i+1985),dt)
+  assign(x=str_c("data.",i+1985),dt)
   if (file.exists(paste0(1985+i,"data",".csv"))){
     warning(paste0(1985+i,"data already exists, not rewriting\n"))
   } else {
@@ -78,7 +78,7 @@ for(i in 1:length(files2)){
     new.vector[d] <- hp[[colnames[d]]]
   } 
   colnames(dt) <- new.vector
-  assign(x=str_c("data",2*i+1997),dt)
+  assign(x=str_c("data.",2*i+1997),dt)
   if (file.exists(paste0(1997+2*i,"data",".csv"))){
     warning(paste0(1997+2*i,"data already exists, not rewriting\n"))
   } else {
