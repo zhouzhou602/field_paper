@@ -1,7 +1,7 @@
 # The inflation data is from 
 # http://www.usinflationcalculator.com/inflation/consumer-price-index-and-annual-percent-changes-from-1913-to-2008/
 setwd("/Users/Fangzhu/Documents/field_paper/8515")
-source(add_year.R)
+source(data8515.R)
 inflation <- read.csv("adjusted_inflation.csv")
 dtfiles <- list(data.1986,data.1987,data.1988,data.1989,data.1990,data.1991,data.1992,data.1993
               ,data.1994,data.1995,data.1996,data.1997)
@@ -16,7 +16,7 @@ for(i in 1:length(dtfiles)){
   hd_adj_income <- hd_income/rel_inf[i]
   wf_adj_income <- wf_income/rel_inf[i]
   dt <- cbind(file,hd_adj_income)
-  assign(paste0("datat.",1985+i),dt)
+  assign(paste0("data.",1985+i),dt)
 }
 
 for(i in 1:length(dtfiles2)){
@@ -26,5 +26,5 @@ for(i in 1:length(dtfiles2)){
   hd_adj_income <- hd_income/rel_inf[i+12]
   wf_adj_income <- wf_income/rel_inf[i+12]
   dt <- cbind(file,hd_adj_income)
-  assign(paste0("datat.",1997+2*i),dt)
+  assign(paste0("data.",1997+2*i),dt)
 }
