@@ -47,6 +47,9 @@ annual.name.list2 <- list(name14, name15,name16,name17,name18,name19,name20,name
 
 ##Using hashmap to replace the column names for each dataset and save as .csv files
 ##For year 1986-1997
+
+inflation <- read.csv("adjusted_inflation.csv")
+rel_inf <- inflation$relative_inflation
 files <- list(data.1986,data.1987,data.1988,data.1989,data.1990,data.1991,data.1992,data.1993
               ,data.1994,data.1995,data.1996,data.1997)
 
@@ -65,7 +68,13 @@ for(i in 1:length(files)){
   assign(x=str_c("data.",i+1985),dt)
   Year <- rep(i+1985,length = nrow(data.1986))
   a <- cbind(dt, Year)
-  assign(paste0("data.",1985+i),a)
+  #assign(paste0("data.",1985+i),a)
+  hd_income <- a$hd_wage
+  wf_income <- a$wf_wage
+  hd_adj_income <- hd_income/rel_inf[i]
+  wf_adj_income <- wf_income/rel_inf[i]
+  dt <- cbind(a,hd_adj_income)
+  assign(paste0("data.",1985+i),dt)
   if (file.exists(paste0(1985+i,"data",".csv"))){
     warning(paste0(1985+i,"data already exists, not rewriting\n"))
   } else {
@@ -73,7 +82,10 @@ for(i in 1:length(files)){
   }
 }
 ##For year 1999-2015
-files2 <- list(data.1999,data.2001,data.2003,data.2005, data.2007, data.2009, data.2011, data.2013, data.2015)
+files2 <- list(data.1999,data.2001,data.2003,data.2005
+               , data.2007, data.2009, data.2011, data.2013, data.2015)
+
+
 for(i in 1:length(files2)){
   dt <- files2[[i]]
   colnames <- colnames(dt)
@@ -84,7 +96,12 @@ for(i in 1:length(files2)){
     new.vector[d] <- hp[[colnames[d]]]
   } 
   colnames(dt) <- new.vector
-  assign(x=str_c("data.",2*i+1997),dt)
+  hd_income <- dt$hd_wage
+  wf_income <- dt$wf_wage
+  hd_adj_income <- hd_income/rel_inf[i+12]
+  wf_adj_income <- wf_income/rel_inf[i+12]
+  dt <- cbind(dt,hd_adj_income)
+  assign(paste0("data.",1997+2*i),dt)
   if (file.exists(paste0(1997+2*i,"data",".csv"))){
     warning(paste0(1997+2*i,"data already exists, not rewriting\n"))
   } else {
