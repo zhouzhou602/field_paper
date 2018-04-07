@@ -77,6 +77,7 @@ for(i in 1:length(files)){
   hd_adj_income <- hd_income/rel_inf[i]
   wf_adj_income <- wf_income/rel_inf[i]
   dt <- cbind(a,hd_adj_income)
+  dt <- cbind(a,wf_adj_income)
   dt <- cbind(dt,ID)
   assign(paste0("data.",1984+i),dt)
   if (file.exists(paste0(1984+i,"data",".csv"))){
@@ -105,6 +106,7 @@ for(i in 1:length(files2)){
   hd_adj_income <- hd_income/rel_inf[i+12]
   wf_adj_income <- wf_income/rel_inf[i+12]
   dt <- cbind(dt,hd_adj_income)
+  dt <- cbind(dt,wf_adj_income)
   dt <- cbind(dt,ID)
   assign(paste0("data.",1997+2*i),dt)
   if (file.exists(paste0(1997+2*i,"data",".csv"))){
@@ -114,7 +116,6 @@ for(i in 1:length(files2)){
   }
 }
 
-#add ID
 
 
 
