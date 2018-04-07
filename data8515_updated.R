@@ -50,6 +50,9 @@ annual.name.list2 <- list(name15,name16,name17,name18,name19,name20,name21,name2
 
 inflation <- read.csv("adjusted_inflation.csv")
 rel_inf <- inflation$relative_inflation
+
+#Add ID
+ID <- seq(1,nrow(data.1985))
 files <- list(data.1985,data.1986,data.1987,data.1988,data.1989,data.1990,data.1991,data.1992,data.1993
               ,data.1994,data.1995,data.1996,data.1997)
 
@@ -74,6 +77,7 @@ for(i in 1:length(files)){
   hd_adj_income <- hd_income/rel_inf[i]
   wf_adj_income <- wf_income/rel_inf[i]
   dt <- cbind(a,hd_adj_income)
+  dt <- cbind(dt,ID)
   assign(paste0("data.",1984+i),dt)
   if (file.exists(paste0(1984+i,"data",".csv"))){
     warning(paste0(1984+i,"data already exists, not rewriting\n"))
@@ -101,6 +105,7 @@ for(i in 1:length(files2)){
   hd_adj_income <- hd_income/rel_inf[i+12]
   wf_adj_income <- wf_income/rel_inf[i+12]
   dt <- cbind(dt,hd_adj_income)
+  dt <- cbind(dt,ID)
   assign(paste0("data.",1997+2*i),dt)
   if (file.exists(paste0(1997+2*i,"data",".csv"))){
     warning(paste0(1997+2*i,"data already exists, not rewriting\n"))
@@ -108,5 +113,9 @@ for(i in 1:length(files2)){
     write.csv(dt,file = paste0(1997+2*i,"data",".csv"))
   }
 }
+
+#add ID
+
+
 
 
