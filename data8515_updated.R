@@ -2,7 +2,8 @@
 ##Step 1: Download data including necessary variables from PSID website with .dta format
 ##Step 2: Import .dta format data into excel and assign each row a unique ID
 ##Step 3: Import .csv data into R and subset the data into annual data.
-
+library(hashmap)
+library(stringr)
 setwd("/Users/Fangzhu/Documents/field_paper/8515")
 data <- read.csv("8515_updated_4_5.csv")
 
@@ -69,14 +70,12 @@ for(i in 1:length(files)){
   } 
   colnames(dt) <- new.vector
   assign(x=str_c("data.",i+1984),dt)
-  Year <- rep(i+1984,length = nrow(data.1986))
-  a <- cbind(dt, Year)
   #assign(paste0("data.",1985+i),a)
-  hd_income <- a$hd_wage
-  wf_income <- a$wf_wage
+  hd_income <- dt$hd_wage
+  wf_income <- dt$wf_wage
   hd_adj_income <- hd_income/rel_inf[i]
   wf_adj_income <- wf_income/rel_inf[i]
-  dt <- cbind(a,hd_adj_income)
+  dt <- cbind(dt,hd_adj_income)
   dt <- cbind(dt,wf_adj_income)
   dt <- cbind(dt,ID)
   assign(paste0("data.",1984+i),dt)
