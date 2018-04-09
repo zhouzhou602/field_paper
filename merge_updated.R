@@ -42,6 +42,8 @@ for(i in 1:length(red_files2)){
   newfile <- merge(newfile,files2[[i]],all=TRUE)
 }
 
+sort_newfile <- newfile[order(newfile$ID,newfile$Year),]
+
 
 
 
