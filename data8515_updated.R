@@ -109,7 +109,7 @@ for(i in 1:length(files2)){
   dt <- cbind(dt,ID)
   assign(paste0("data.",1997+2*i),dt)
   if (file.exists(paste0(1997+2*i,"data",".csv"))){
-    warning(paste0(1997+2*i,"data already exists, not rewriting\n"))
+    warning(paste0(1997+2*i,"data already exists, not rewrxiting\n"))
   } else {
     write.csv(dt,file = paste0(1997+2*i,"data",".csv"))
   }
