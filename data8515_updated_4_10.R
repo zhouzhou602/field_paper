@@ -58,7 +58,7 @@ files <- list(data.1985,data.1986,data.1987,data.1988,data.1989,data.1990,data.1
               ,data.1994,data.1995,data.1996,data.1997)
 
 
-
+path <- "/Users/Fangzhu/Documents/field_paper/8515/data/"
 for(i in 1:length(files)){
   dt <- files[[i]]
   colnames <- colnames(dt)
@@ -79,10 +79,10 @@ for(i in 1:length(files)){
   dt <- cbind(dt,wf_adj_income)
   dt <- cbind(dt,ID)
   assign(paste0("data.",1984+i),dt)
-  if (file.exists(paste0(1984+i,"data","updated",".csv"))){
+  if (file.exists(paste0(path,1984+i,"data",".csv"))){
     warning(paste0(1984+i,"data already exists, not rewriting\n"))
   } else {
-    write.csv(dt,file = paste0(1984+i,"data","updated",".csv"))
+    write.csv(dt,file = paste0(path,1984+i,"data",".csv"))
   }
 }
 ##For year 1999-2015
@@ -108,10 +108,10 @@ for(i in 1:length(files2)){
   dt <- cbind(dt,wf_adj_income)
   dt <- cbind(dt,ID)
   assign(paste0("data.",1997+2*i),dt)
-  if (file.exists(paste0(1997+2*i,"data","updated",".csv"))){
+  if (file.exists(paste0(path,1997+2*i,"data",".csv"))){
     warning(paste0(1997+2*i,"data already exists, not rewrxiting\n"))
   } else {
-    write.csv(dt,file = paste0(1997+2*i,"data","updated",".csv"))
+    write.csv(dt,file = paste0(path,1997+2*i,"data",".csv"))
   }
 }
 
