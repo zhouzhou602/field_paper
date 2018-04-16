@@ -69,46 +69,9 @@ dt_with_wf$wage_ratio <- dt_with_wf$wf_adj_income/(dt_with_wf$hd_adj_income+dt_w
 dt_both_work <- subset(dt_with_wf,hd_wage>0 & wf_wage>0)
 dt_both_work_hrs <- subset(dt_with_wf,hd_total_work_hrs>0 & wf_total_work_hrs>0)
 dt_both_work_hrs$hrs_ratio <- dt_both_work_hrs$wf_total_work_hrs/(dt_both_work_hrs$wf_total_work_hrs+dt_both_work_hrs$hd_total_work_hrs)
-
-##plot the distribution of wage ratio using 0.01 as bindwidth
-path <- "/Users/Fangzhu/Documents/field_paper/8515/graphs/"
-pdf(paste0(path,"wage_ratio0.01.pdf"),width=7,height=5)
-breaks0.01 = seq(0,1,0.01)
-cut0.01 = cut(dt_both_work$wage_ratio,breaks0.01,right=FALSE)
-freq0.01 <- table(cut0.01)
-cbind(freq0.01)
-plot(cut0.01)
-title(main="distribution of wage ratio", xlab= "wage ratio of wife", ylab = "Number of observations")
-dev.off()
+dt_both_work$housework_hrs_ratio <- dt_both_work$wf_housework_hrs/(dt_both_work$wf_housework_hrs+dt_both_work$hd_housework_hrs)
 
 
-##plot the distribution of wage ratio using 0.001 as bindwidth
-breaks0.001 = seq(0,1,0.001)
-pdf(paste0(path,"wage_ratio0.001.pdf"),width=7,height=5)
-breaks0.001 = c(seq(0,1,0.001))
-cut0.001 = cut(dt_both_work$wage_ratio,breaks0.001,right=FALSE)
-freq0.001 <- table(cut0.001)
-cbind(freq0.001)
-plot(cut0.001)
-title(main="distribution of wage ratio", xlab= "wage ratio of wife", ylab = "Number of observations")
-dev.off()
 
-##plot the distribution of working hours ratio using 0.01 as bindwidth
-pdf(paste0(path,"hrs_ratio0.01.pdf"),width=7,height=5)
-cut_hrs0.01 = cut(dt_both_work_hrs$hrs_ratio,breaks0.01,right=FALSE)
-freq_hrs0.01 <- table(cut0.01)
-cbind(freq_hrs0.01)
-plot(cut_hrs0.01)
-title(main="distribution of working hours ratio", xlab= "working hours ratio", ylab = "Number of observations")
-dev.off()
-
-##plot the distribution of working hours ratio using 0.001 as bindwidth
-pdf(paste0(path,"hrs_ratio0.001.pdf"),width=7,height=5)
-cut_hrs0.001 = cut(dt_both_work_hrs$hrs_ratio,breaks0.001,right=FALSE)
-freq_hrs0.001 <- table(cut_hrs0.001)
-cbind(freq_hrs0.001)
-plot(cut_hrs0.001)
-title(main="distribution of working hours ratio", xlab= "working hours ratio", ylab = "Number of observations")
-dev.off()
 
 
