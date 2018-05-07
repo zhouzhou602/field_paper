@@ -5,9 +5,9 @@
 library(hashmap)
 library(stringr)
 setwd("/Users/Fangzhu/Documents/field_paper/8515")
-data <- read.csv("data8515_updated_4_10.csv")
+data <- read.csv("data_updated_5_6.csv")
 
-var_name_list <- read.csv("variable_list_correspondence_4_10.csv")
+var_name_list <- read.csv("variable_list_correspondence_5_6.csv")
 
 Xseq_yr = paste("X",c(seq(1985,1996),seq(1997,2015,by=2)),sep="")
 
