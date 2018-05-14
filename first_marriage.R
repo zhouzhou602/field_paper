@@ -267,3 +267,11 @@ single85test.complete  <- setDT(single85test)[, if(any(mrg_duration!=0)) .SD, by
 ss2 <- cbind(single85test.complete$ID,single85test.complete$Year,single85test.complete$head_marital_status,single85test.complete$mrg_duration)
 colnames(ss2) <- c("ID","Year","head_marital_status","mrg_duration")
 ss2 <- as.data.frame(ss2)
+
+sss <- rbind(ss,ss2)
+sss_sort <- sss[order(sss$ID,sss$Year),]
+write.csv(sss_sort,"sss_sort.csv")
+data.complete <- rbind(married85test.complete,single85test.complete)
+
+##Now we would like to constrct a dummy to identify couples' marital status
+
